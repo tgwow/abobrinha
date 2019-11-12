@@ -105,16 +105,30 @@ height: 300px;
 #ctrl-panel {
   display: flex;
   padding-top: 80px;
-  padding-left: 42px;
+  padding-left: 72px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#ctrl-panel-noflex {
+  display: block;
+  padding-top: 80px;
+  padding-left: 75px;
   flex-direction: column;
   align-items: flex-start;
 }
 
-#ctrl-panel .button{
-  text-decoration: none;
+#ctrl-panel .button, #ctrl-panel-noflex .button{
   font-size: 16px;
   color: #555;
-  margin: 0 30;
+  margin-right: 10px;
+}
+#ctrl-panel-noflex span{
+  font-size: 15px;
+}
+
+#ctrl-panel-noflex .blue-register{
+  color: #259dff!important;
+  padding-left: 2px;
 }
 
 #ctrl-panel .logout{

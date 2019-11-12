@@ -6,8 +6,9 @@ style
 body
 	include header.html
 
-	#ctrl-panel
-		if logado
+	
+	if logado
+		#ctrl-panel
 			a.button(
 				href="/posts"
 			) post
@@ -17,11 +18,13 @@ body
 			a.button(
 				href="/logout"
 			) logout
-		else 
+	else
+		#ctrl-panel-noflex
 			a.button(
 				href="/login"	
 			) login
-			a.button(
+			span or 
+			a.button.blue-register(
 				href="/create"	
 			) register
 
