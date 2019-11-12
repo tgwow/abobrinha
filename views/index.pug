@@ -5,7 +5,7 @@ style
 	include ../public/stylesheets/main-content.css
 body
 	include header.html
-	
+
 	#ctrl-panel
 		if logado
 			a.button(
@@ -21,32 +21,32 @@ body
 			a.button(
 				href="/create"	
 			) register
-			
+
 	include main-content.html
-	
+
 	#features
-		if login
-			h3 Search by title
+		if logado
 			if erro
 				span(
 					style="color : red;"
 				) Invalid Title
 			form#search(
-				action="/search"
+				action="/"
 				method="get"
 			)
 				input#title(
 					type="text"
 					name="title"
 					class="form-control"
+					placeholder="Search by title"
 					required
 				)
 				button(
 					type="submit"
 					class="btn btn-primary"
 				) Search
-		.boxes
-			if !posts
+		else
+			.boxes
 				#web
 					h2 Aplicativos da Web
 					p O Express é um framework para aplicativo da web do Node.js
@@ -67,8 +67,10 @@ body
 					p Desenvolva aplicativos orientado a modelos com
 						| um framework baseado em Express.Descubra 
 						| mais em loopback.io.
-			else
-				each item in posts
+		if logado 
+			.boxes
+				each post in posts
 					.posts
-						h2= item.title
-						p= item.description	
+						h2= post.title
+						p= post.description
+

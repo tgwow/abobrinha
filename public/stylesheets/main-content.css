@@ -74,6 +74,13 @@ height: 300px;
 /* padding-right: 5%; */
 /*display: flex;*/
 }
+#features > form {
+  padding-left: 18px;
+}
+#features form input {
+  width: 20%;
+  margin-bottom: 5px;
+}
 .boxes {
   width: 100%;
 }
@@ -144,6 +151,7 @@ height: 300px;
     padding: 0 0%;
     display: flex;
   }
+
   #main-content .left-content blockquote, .express-text, .express-version {
     display: none;
   }

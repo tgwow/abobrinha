@@ -1,6 +1,6 @@
 module.exports = {
-    uri: 'mongodb://localhost:27017/mongo-test',
-    db: 'mongo-test',
+    uri: 'mongodb://localhost:27017/abobrinha',
+    db: 'abobrinha',
     options: {
         useNewUrlParser: true
     }

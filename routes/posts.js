@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
     if(!req.session.user){
         res.render('index.pug');
     }else {
-        //let q = (req.query && req.query.nome) ? {nome: new RegExp('^' + req.query.nome, 'i')} : {};
+        //let q = (req.query && req.query.title) ? {title: new RegExp('^' + req.query.title, 'i')} : {};
         Post.find({}, {}).then((users) => {
             res.render('posts.pug', { posts: users, logado: true} );
         });

@@ -7,31 +7,29 @@ form#form(
     method="post"
     class="form-create"
     )
-    if fielderr
+    h2 New user
+    if err == 1
         span(
-            style="color : red;"
-        ) All fields needs to be filled
+            style="color: red; display:block;"
+        ) Login or email already in use
+    if err == 2
+        span(
+            style="color: red; display:block;"
+            ) All fields are required !
     .form-group
-        h2 New user
 
         label Login
         input#login(
             type="text"
             name="login"
             class="form-control"
-            required
         )
-    if erro
-        p(
-            style="color : red;"
-        ) e-mail already in use
     .form-group
-        label e-mail
+        label E-mail
         input#email(
             type="text"
             name="email"
             class="form-control"
-            required
         )
     .form-group
         label Address
@@ -39,7 +37,6 @@ form#form(
             type="text"
             name="address"
             class="form-control"
-            required
         )
     .form-group
         label Password
@@ -47,7 +44,6 @@ form#form(
             type="password"
             name="password"
             class="form-control"
-            required
         )
     .form-group
         button#login(
@@ -55,5 +51,5 @@ form#form(
             class="btn btn-primary" 
         ) Register
         a.back(
-				href="../"	
-			) voltar
+            href="../"	
+            ) voltar

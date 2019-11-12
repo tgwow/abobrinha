@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
     if(!req.session.user){
         res.render('index.pug');
     }else {
-        //let q = (req.query && req.query.nome) ? {nome: new RegExp('^' + req.query.nome, 'i')} : {};
-        Post.find({}, {}).then((posts) => {
+        let q = (req.query && req.query.title) ? {title: new RegExp('^' + req.query.title, 'i')} : {};
+        Post.find(q, {}).then((posts) => {
             res.render('index.pug', { posts: posts, logado: true} );
         });
     }
@@ -49,8 +49,22 @@ router.post('/create', function (req, res, next) {
     user.address = req.body.address;
     user.password = req.body.password;
   
-    user.save();
-    res.redirect('/');
+    if(req.body.login === "" || req.body.email === "" || req.body.address === "" || req.body.password === "")
+        res.render('users/create.pug', {'err': 2});
+    else {
+        try {
+            User.find({ $or: [{login: user.login}, {email: user.email}]}).then((users) => {
+                if(users.length > 0 ) {
+                    res.render('users/create.pug', {err: 1});
+                } else {
+                    user.save();
+                    res.redirect('/');
+                }
+            })
+        } catch (err){
+            console.log(err);
+        }
+    }
 });
 
 module.exports = router;
