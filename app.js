@@ -5,6 +5,9 @@ var session = require('express-session');
 var logger = require('morgan');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
+var multer = require('multer')
+var upload = multer({ dest: 'public/uploads' })
+const images = [];
 
 var app = express();
 
@@ -30,6 +33,21 @@ app.use('/posts', postsRouter);
 
 app.get('/login', (req, res) => {
   res.render('login.pug');
+})
+
+app.get('/upload', (req, res) => {
+  console.log(images);
+  if(req.session.user){
+    res.render('upload.pug', {image: images});
+  }
+  else {
+    res.render('index.pug',{logado: false});
+  }
+})
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  images.push(req.file.filename)
+  res.redirect('/upload');
 })
 
 app.get('/logout',(req, res)=>{

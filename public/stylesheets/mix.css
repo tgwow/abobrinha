@@ -6,6 +6,13 @@
     margin: 20 auto;
     background-color: rgba(230, 230, 230, 0.404);
 }
+.form-create-img{
+	width: 550px;
+	padding: 35px;
+    border-radius: 5px;
+    margin: 20 auto;
+    background-color: rgba(230, 230, 230, 0.404);
+}
 h2 {
     text-align: center;
 }

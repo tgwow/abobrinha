@@ -1,7 +1,7 @@
 let client = require('mongodb').MongoClient,
     ObjectId = require('mongodb').ObjectId;
 let config = require('./config');
-let conn = client.connect(config.uri, config.options).then((conn) => {
+let conn = client.connect(process.env.MONGODB_URI || config.uri).then((conn) => {
     return {
         db: conn.db(config.db),
         close: function () {
