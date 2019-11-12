@@ -1,0 +1,48 @@
+doctype.html
+
+html
+	include head.html
+	style
+		include css/header.css
+		include css/body.css
+	body
+		include header.html
+		.content
+			form#input(
+				action="/login"
+				method="post"
+			)
+				fieldset
+					legend Sign in
+					if login === 'erro'
+						span(
+							style="color : red;"
+						) email or password are invalid!! 
+					span E-mail
+					input#login(
+						type="text"
+						name="email"
+					)
+					span Password
+					input#password(
+						type="password"
+						name="password"
+					)
+					button#login(
+						type="submit"
+					) login
+
+<h1>Lista de posts</h1>
+<p>
+    <a href="users/new">Novo</a>
+</p>
+<form action="" method="get" accept-charset="utf-8">
+    <label for="nome">Nome:</label>
+    <input type="text" name="nome" value="" id="nome">
+    <input type="submit" value="pesquisar &rarr;">
+</form>
+<ul>
+{{#users}}
+    <li>{{nome}}</li>
+{{/users}}
+</ul>

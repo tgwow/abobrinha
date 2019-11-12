@@ -1,0 +1,74 @@
+include head.html
+style
+	include ../public/stylesheets/header.css
+	include ../public/stylesheets/body.css
+	include ../public/stylesheets/main-content.css
+body
+	include header.html
+	
+	#ctrl-panel
+		if logado
+			a.button(
+				href="/posts"
+			) profile
+			a.button(
+				href="/logout"
+			) logout
+		else 
+			a.button(
+				href="/login"	
+			) login
+			a.button(
+				href="/create"	
+			) register
+			
+	include main-content.html
+	
+	#features
+		if login
+			h3 Search by title
+			if erro
+				span(
+					style="color : red;"
+				) Invalid Title
+			form#search(
+				action="/search"
+				method="get"
+			)
+				input#title(
+					type="text"
+					name="title"
+					class="form-control"
+					required
+				)
+				button(
+					type="submit"
+					class="btn btn-primary"
+				) Search
+		.boxes
+			if !posts
+				#web
+					h2 Aplicativos da Web
+					p O Express é um framework para aplicativo da web do Node.js
+						| mínimo e flexível que fornece um conjunto
+						| robusto de recursos para aplicativos web e móvel.
+				#apis
+					h2 APIs
+					p Com uma miríade de métodos utilitários 
+						| HTTP e middleware a seu dispor, criar
+						| uma API robusta é rápido e fácil.
+				#performance
+					h2 Desempenho
+					p O Express fornece uma camada fina de recursos
+						| fundamentais para aplicativos da web, sem obscurecer
+						| os recursos do Node.js que você conhece e ama. 
+				#frameworks
+					h2 LoopBack
+					p Desenvolva aplicativos orientado a modelos com
+						| um framework baseado em Express.Descubra 
+						| mais em loopback.io.
+			else
+				each item in posts
+					.posts
+						h2= item.title
+						p= item.description	

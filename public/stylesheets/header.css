@@ -1,0 +1,198 @@
+header {
+	background-color: #eee;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 55px;
+	border-bottom: 1px solid #ddd;
+	z-index: 100;
+}
+
+input#toggle{
+	display: none;
+}
+
+#navmenu li{
+	font-size: 14px/1.6;
+	display: inline-block;
+	padding: 10px;
+	padding-top: 0px;
+	padding-right: 5px;
+}
+
+#navmenu {
+	padding: center;
+	margin: 0;
+	right: 0;
+	margin-right: 15px;
+}
+
+#navmenu a{
+	text-decoration: none;
+	color: #666;
+}
+
+#navmenu a:hover{
+	color: #666;
+}
+
+#logo{
+	position: fixed;
+	top: 2px;
+	margin: 0;
+	padding: 10px 25px;
+	width: auto;
+	border-left: none;
+	z-index: 1;
+}
+
+#logo a{
+	display: block;
+	font: 25px "Helvetica Neue","Open Sans",sans-serif;
+	font-weight: 100;
+	color: #444;
+	text-decoration: none;
+}
+
+#navbar{
+	padding-left: 5%;
+	max-width: 1000px;
+	height: 100%;
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
+	top: 15px;
+	box-sizing: content-box;
+}
+
+#navmenu ul{
+	background-color: #fff;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #888;
+	border-radius: 3px;
+	position: absolute;
+	display: none;
+}
+
+#navmenu ul li{
+	padding-top: 1px;
+	float: none;
+	display: block;
+}
+
+
+#navmenu ul a{
+	white-space: nowrap;
+}
+
+#navmenu li:hover ul{
+	display:block;
+}
+
+@media screen and (max-width:900px){
+	#logo {
+		text-align: center;
+		position: relative;
+		z-index: -1;
+	}
+
+	#logo a{
+		font-weight: bold;
+	}
+
+	ul{
+		position: static;
+	}
+
+	#navbar{
+		padding: 0;
+		display: none;
+		top:0;
+		left: 0;
+		justify-content: flex-start;
+		margin-left: 0;
+	}
+
+	li{
+		margin-bottom: 1px;
+	}
+	ul li, li a{
+		width: 100%;
+	}
+
+	#hide {
+		display: none;
+	}
+
+	#toggle:checked ~ div#navbar{
+		display: block;
+	}
+
+	.button {
+  		float: left;
+  		display: block;
+  		width: 30px;
+ 		height: 28px;
+ 		margin-left: 16px;
+ 		margin-top: 9px;
+ 		border: 1px solid #ccc;
+ 		border-radius: 3px;
+ 		padding-top: 7px;
+ 		padding-left: 5px;
+ 		cursor: pointer;
+	}
+
+	#threelines{
+		background: linear-gradient(
+    		to bottom,
+    			#555, #555 20%,
+    			#eee 20%, #eee 40%,
+    			#555 40%, #555 60%,
+    			#eee 60%, #eee 80%,
+    			#555 80%, #555 100%
+  		);
+  		width: 25px;
+  		height: 20px;
+
+	}
+
+	header{
+		box-shadow: 3px;
+	}
+
+	#navbar ul{
+		background-color: #eee;
+	}
+
+	#navmenu{
+		position: absolute;
+		width: 900px;
+		margin-right: 0;
+		left: -31;
+	}
+
+	#navmenu a{
+		font-size: 18px;
+	}
+
+	#navmenu li{
+		border-bottom: 1px solid #ddd;
+	}
+
+	#navmenu ul{
+		position: relative;
+		border: none;
+		background-color: #ccc;
+		max-height: 180px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+	#navmenu ul a{
+		font-size: 16px;
+	}
+}

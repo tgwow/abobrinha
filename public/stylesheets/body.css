@@ -1,0 +1,23 @@
+body{
+	max-width: 1336px;
+	font: 400 14px/1.6 "Open Sans",sans-serif;
+	background-image: url(../img/bg.jpg);
+	background-repeat: repeat;
+	
+	background-color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+body a{
+	cursor: pointer;
+}
+
+.content{
+	width: 10%;
+	margin-top: 100px;
+	display: block;
+}
+

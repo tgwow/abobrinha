@@ -1,0 +1,59 @@
+include ../head.html
+style
+    include ../../public/stylesheets/header.css
+    include ../../public/stylesheets/mix.css
+form#form(
+    action="/create"
+    method="post"
+    class="form-create"
+    )
+    if fielderr
+        span(
+            style="color : red;"
+        ) All fields needs to be filled
+    .form-group
+        h2 New user
+
+        label Login
+        input#login(
+            type="text"
+            name="login"
+            class="form-control"
+            required
+        )
+    if erro
+        p(
+            style="color : red;"
+        ) e-mail already in use
+    .form-group
+        label e-mail
+        input#email(
+            type="text"
+            name="email"
+            class="form-control"
+            required
+        )
+    .form-group
+        label Address
+        input#address(
+            type="text"
+            name="address"
+            class="form-control"
+            required
+        )
+    .form-group
+        label Password
+        input#password(
+            type="password"
+            name="password"
+            class="form-control"
+            required
+        )
+    .form-group
+        button#login(
+            type="submit" 
+            class="btn btn-primary" 
+        ) Register
+        a.back(
+				href="../"	
+			) voltar

@@ -1,0 +1,40 @@
+include ./head.html
+style
+    include ../public/stylesheets/header.css
+    include ../public/stylesheets/mix.css
+form#form(
+    action=""
+    method="post"
+    class="form-create"
+    )
+    if fielderr
+        span(
+            style="color : red;"
+        ) All fields needs to be filled
+    .form-group
+        h2 New post!
+
+        label Title
+        input(
+            type="text"
+            name="title"
+            class="form-control"
+            required
+        )
+    .form-group
+        label Description
+        input#email(
+            type="text"
+            name="description"
+            class="form-control"
+            required
+        )
+    .form-group
+        button#login(
+            type="submit" 
+            class="btn btn-primary" 
+        ) Post
+        a.back(
+				href="../"	
+			) voltar
+        
