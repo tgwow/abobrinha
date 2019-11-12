@@ -3,7 +3,7 @@ let client = require('mongodb').MongoClient,
 let config = require('./config');
 let conn = client.connect(process.env.MONGODB_URI || config.uri).then((conn) => {
     return {
-        db: conn.db(config.db),
+        db: conn.db('heroku_4dd2fbxv'),
         close: function () {
             conn.close();
         }
