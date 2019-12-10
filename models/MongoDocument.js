@@ -1,5 +1,6 @@
 let client = require('mongodb').MongoClient,
     ObjectId = require('mongodb').ObjectId;
+const assert = require('assert');
 let config = require('./config');
 let conn = client.connect(process.env.MONGODB_URI || config.uri).then((conn) => {
     return {
@@ -26,14 +27,19 @@ module.exports = class MongoDocument {
         })
     }
 
-    delete () {
-        if (this._id) {
+    static delete (id) {
+        return conn.then((conn)=> {
+            return conn.db.collection('posts').deleteOne(id)
+        });
+    }
+        /*if (id) {
             return conn.then((conn) => {
-                return conn.db.collection(this.collection).deleteOne({_id: this._id});
+                return conn.db.collection(collection).deleteOne({_id: id});
             });
         }
         return null;
-    }
+        */
+    
 
     static findOne (_id, collection) {
         return conn.then((conn) => {

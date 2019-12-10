@@ -31,10 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', usersRouter);
 app.use('/posts', postsRouter);
 
-app.get('/login', (req, res) => {
-  res.render('login.pug');
-})
-
 app.get('/upload', (req, res) => {
   console.log(images);
   if(req.session.user){
@@ -50,10 +46,15 @@ app.post('/upload', upload.single('image'), (req, res) => {
   res.redirect('/upload');
 })
 
+app.get('/login', (req, res) => {
+  res.render('login.pug');
+})
+
 app.get('/logout',(req, res)=>{
 	req.session.cookie.maxAge = 0;
 	res.redirect('/');
 })
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

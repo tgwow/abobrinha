@@ -5,21 +5,37 @@ var Post = require('../models/Post');
 
 
 router.get('/', function(req, res, next) {
-
     if(!req.session.user){
         res.render('index.pug');
-    }else {
-        let q = (req.query && req.query.title) ? {title: new RegExp('^' + req.query.title, 'i')} : {};
-        Post.find(q, {}).then((posts) => {
-            res.render('index.pug', { posts: posts, logado: true} );
+    } else{
+        Post.find({}, {}).then((posts) => {
+            //console.log('as'+posts);
+            res.render('index.pug', {posts: posts, logado:true})
         });
     }
 });
 
 router.get('/login', (req, res) => {
-    res.render('login.pug');
+    res.render('login.pug')
 })
 
+router.get('/live/:search', function(req, res, next) {
+    if(!req.session.user){
+        res.render('index.pug');
+    }else {
+        let regex = new RegExp(req.query.title, 'i')
+        let q = (req.query && req.query.title) ? {title: regex} : {};
+        Post.find(q, {}).then((posts) => {
+            console.log(posts);
+            res.json(posts)
+        });
+    }
+});
+  
+router.get('/logout',(req, res)=>{
+      req.session.cookie.maxAge = 0;
+      res.redirect('/');
+})
 router.post('/login', (req, res) => {
     let login = req.body.login,
         password = req.body.password;
@@ -29,10 +45,12 @@ router.post('/login', (req, res) => {
         } else {
             User.find({login: login, password: password}).then((user) => {
                 if(user.length == 0 ) {
-                    res.render('login.pug', {err: 1 });
+                    res.render('login.pug', {err: 1})
+                        /*res.render('login.pug', {err: 1 } , (err, html) => {
+                            res.json(user);*/
                 } else {
                     req.session.user = user[0]._id;
-                    res.redirect('/');
+                    res.redirect('/')
                 }
             });
         }

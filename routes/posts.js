@@ -1,17 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/User');
 var Post = require('../models/Post');
+var ObjectId = require('mongodb').ObjectId;
 
 
 router.get('/', function(req, res, next) {
     if(!req.session.user){
         res.render('index.pug');
     }else {
-        //let q = (req.query && req.query.title) ? {title: new RegExp('^' + req.query.title, 'i')} : {};
-        Post.find({}, {}).then((users) => {
-            res.render('posts.pug', { posts: users, logado: true} );
-        });
+        res.render('posts.pug');
     }
 });
 
@@ -25,15 +22,14 @@ router.post('/', function(req, res, next) {
     res.redirect('/posts');
 });
 
-router.post('/create', function (req, res, next) {
-    let user = new User({});
-    user.login = req.body.login;
-    user.email = req.body.email;
-    user.address = req.body.address;
-    user.password = req.body.password;
-  
-    user.save();
-    res.redirect('/');
+router.delete('/delete/:id', function(req, res) {
+    let id = ObjectId(req.params.id)
+    Post.delete({_id: id})
+        .then((result) => {
+            console.log('another:'+result)
+            res.json(result)
+        }).catch((err) => {
+            console.log(err)})
 });
 
 module.exports = router;
