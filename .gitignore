@@ -1,7 +1,2 @@
 node_modules/
-uploads/*
-tmp/*
 
-# exception to the rule
-!uploads/.gitkeep 
-!tmp/.gitkeep 
