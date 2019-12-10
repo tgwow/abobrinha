@@ -54,8 +54,10 @@ app.post('/upload', (req,res) => {
 
   form.on('file', (name, file) => {
     if (photo.length === 1){
-      fs.unlink(file.path)
-      return true
+      if (fs.existsSync(file.path)) {
+        fs.unlink(file.path)
+        return true
+      }
     }
 
     var buffer = null, type = null, filename = ''
