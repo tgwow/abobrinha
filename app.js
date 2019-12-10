@@ -53,26 +53,27 @@ app.post('/upload', (req,res) => {
   form.uploadDir = path.join(__dirname, 'tmp')
 
   form.on('file', (name, file) => {
-    if (photo.length === 1){
+    /*if (photo.length >0){
       if (fs.existsSync(file.path)) {
-        fs.unlink(file.path)
-        return true
+        fs.unlink(file.path, (err)=>{
+          if (err) throw err;
+          console.log('deleted!'+file.path)
+          return true
+        })
       }
-    }
-
+    }*/
     var buffer = null, type = null, filename = ''
 
     buffer = readChunk.sync(file.path, 0, 262)
     type = fileType(buffer)
 
     if (type !== null && (type.ext === 'png' || type.ext === 'jpg' || type.ext === 'jpeg')){
-      filename =  file.name + '-' + Date.now();
+      filename = Date.now() + '-' + file.name ;
 
       fs.rename(file.path, path.join(__dirname, 'uploads/'+filename), (err) => {
         if (err) throw err;
         console.log('renamed!');
       })
-      console.log(file)
       photo.push({
         status: true,
         filename: filename,
@@ -85,6 +86,7 @@ app.post('/upload', (req,res) => {
         filename: file.name,
         message: 'Invalid file type'
       })
+      fs.unlink(file.path);
     }
   })
 
