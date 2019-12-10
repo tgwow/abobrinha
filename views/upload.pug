@@ -1,34 +1,47 @@
 include ./head.html
 style
     include ../public/stylesheets/mix.css
-form(
-    action="upload"
-    method="post" 
-    enctype="multipart/form-data"
-    class="form-create-img"
-    )
-    h2 Upload a image
-    .form-group
-        input( 
-            type="file"
-            name="image"
-            value=""
-            class="form-control-file"
+body
+    form#upload-photo(
+        action="/upload"
+        method="post" 
+        class="form-create-img"
+        enctype="multipart/form-data"
         )
-    .form-group
-        input(
-            type="submit" 
-            value="upload"
-            class="btn btn-primary"
+        h2 Upload a image
+        .form-group
+            input#photo-input( 
+                type="file"
+                name="photo"
+                value=""
+                class="form-control-file"
+            )
+        .form-group
+            input(
+                type="submit" 
+                value="upload"
+                class="btn btn-primary"
+        )
+        hr
+        .row
+            .col-md-12
+                .progress
+                    div(
+                        class="progress-bar progress-bar-striped active" 
+                        role="progressbar" 
+                        aria-valuenow="0"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        style="width: 0%"
+                    )
+                        span.sr-only
+        #album.form-group
+        .form-group
+            a(
+                href="../"	
+                ) voltar
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"
     )
-    if image 
-        each i in image
-            .form-group
-                img(
-                    src="uploads/" + i
-                    class="img-thumbnail"
-                )
-    .form-group
-        a(
-            href="../"	
-            ) voltar
+    script(src="/scripts/upload.js")
